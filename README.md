@@ -30,19 +30,7 @@ If the name of the lager backend that you want to wrap is an atom:
 Simply convert it to:
 
 ```
-    {{lager_middleman_backend, Name}, {Backend, Config}}
-```
-
-If your lager backend contains an `id`:
-
-```
-    {{Name :: atom(), Id :: term()}, Config}
-```
-
-Convert it to:
-
-```
-    {{lager_middleman_backend, {Name, Id}}, {Name, Config}}
+    {lager_middleman_backend, [{Backend, Config}]}
 ```
 
 For example:
@@ -54,7 +42,7 @@ For example:
 Would become:
 
 ```
-    {lager_middleman_backend, lager_console_backend}, {lager_console_backend, debug}}
+    {lager_middleman_backend, [{lager_console_backend, debug}]}
 ```
 
 And:
@@ -66,8 +54,10 @@ And:
 Would become:
 
 ```
-    {{lager_middleman_backend, {lager_file_backend, "debug.log"}}, {lager_file_backend, {"debug.log", debug, 10485760, "$D0", 5}}}.
+    {lager_middleman_backend, [{lager_file_backend, {"debug.log", debug, 10485760, "$D0", 5}}]}.
 ```
+
+NOTE: Lager 3.x is more restrictive than Lager 2.x so you should be careful about filename duplicates in config.
 
 That's it.
 

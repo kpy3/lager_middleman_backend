@@ -30,7 +30,7 @@
 
 %% @private
 -spec init(term()) -> {ok, state()} | {error, term()}.
-init(Args) ->
+init([Args]) ->
     case lager_middleman_server:start_link(Args) of
         ignore ->
             ignore;
